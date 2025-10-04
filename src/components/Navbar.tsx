@@ -33,9 +33,11 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button variant="hero" size="sm">
-              Get Started
-            </Button>
+            <a href="#sports">
+              <Button variant="hero" size="sm">
+                Get Started
+              </Button>
+            </a>
           </div>
 
           <button
@@ -58,9 +60,11 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button variant="hero" size="sm" className="w-full">
-              Get Started
-            </Button>
+            <a href="#sports" className="block" onClick={() => setIsMenuOpen(false)}>
+              <Button variant="hero" size="sm" className="w-full">
+                Get Started
+              </Button>
+            </a>
           </div>
         )}
       </div>

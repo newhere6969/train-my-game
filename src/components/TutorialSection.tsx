@@ -1,26 +1,31 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Target, TrendingUp, Users } from "lucide-react";
+import { Clock, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const tutorialCategories = [
   {
     sport: "Basketball",
+    slug: "basketball",
     icon: "🏀",
     tutorials: [
       {
+        id: 1,
         title: "Perfect Your Shooting Form",
         level: "Beginner",
         duration: "15 min",
         focus: "Technique",
       },
       {
+        id: 2,
         title: "Advanced Dribbling Combos",
         level: "Advanced",
         duration: "25 min",
         focus: "Skills",
       },
       {
+        id: 3,
         title: "Defensive Positioning",
         level: "Intermediate",
         duration: "20 min",
@@ -30,21 +35,25 @@ const tutorialCategories = [
   },
   {
     sport: "Football/Soccer",
+    slug: "football",
     icon: "⚽",
     tutorials: [
       {
+        id: 1,
         title: "Ball Control Mastery",
         level: "Beginner",
         duration: "18 min",
         focus: "Technique",
       },
       {
+        id: 2,
         title: "Passing & Vision Training",
         level: "Intermediate",
         duration: "22 min",
         focus: "Skills",
       },
       {
+        id: 3,
         title: "Set Piece Tactics",
         level: "Advanced",
         duration: "30 min",
@@ -54,21 +63,25 @@ const tutorialCategories = [
   },
   {
     sport: "Tennis",
+    slug: "tennis",
     icon: "🎾",
     tutorials: [
       {
+        id: 1,
         title: "Serve Power & Accuracy",
         level: "Intermediate",
         duration: "20 min",
         focus: "Technique",
       },
       {
+        id: 2,
         title: "Baseline Consistency",
         level: "Beginner",
         duration: "25 min",
         focus: "Skills",
       },
       {
+        id: 3,
         title: "Match Psychology",
         level: "Advanced",
         duration: "35 min",
@@ -113,38 +126,37 @@ const TutorialSection = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {category.tutorials.map((tutorial, index) => (
-                  <Card
-                    key={index}
-                    className="p-6 bg-gradient-card border-border hover:border-primary/50 transition-all duration-300 group cursor-pointer"
-                  >
-                    <div className="space-y-4">
-                      <div className="flex items-start justify-between">
-                        <Badge className={getLevelColor(tutorial.level)}>
-                          {tutorial.level}
-                        </Badge>
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                          <Clock className="w-4 h-4" />
-                          {tutorial.duration}
+                {category.tutorials.map((tutorial) => (
+                  <Link key={tutorial.id} to={`/tutorial/${category.slug}/${tutorial.id}`}>
+                    <Card className="p-6 bg-gradient-card border-border hover:border-primary/50 transition-all duration-300 group cursor-pointer h-full">
+                      <div className="space-y-4">
+                        <div className="flex items-start justify-between">
+                          <Badge className={getLevelColor(tutorial.level)}>
+                            {tutorial.level}
+                          </Badge>
+                          <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                            <Clock className="w-4 h-4" />
+                            {tutorial.duration}
+                          </div>
                         </div>
+
+                        <h4 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                          {tutorial.title}
+                        </h4>
+
+                        <div className="flex items-center gap-2">
+                          <Target className="w-4 h-4 text-primary" />
+                          <span className="text-sm text-muted-foreground">
+                            Focus: {tutorial.focus}
+                          </span>
+                        </div>
+
+                        <Button variant="secondary" className="w-full mt-4">
+                          Start Tutorial
+                        </Button>
                       </div>
-
-                      <h4 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                        {tutorial.title}
-                      </h4>
-
-                      <div className="flex items-center gap-2">
-                        <Target className="w-4 h-4 text-primary" />
-                        <span className="text-sm text-muted-foreground">
-                          Focus: {tutorial.focus}
-                        </span>
-                      </div>
-
-                      <Button variant="secondary" className="w-full mt-4">
-                        Start Tutorial
-                      </Button>
-                    </div>
-                  </Card>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             </div>
