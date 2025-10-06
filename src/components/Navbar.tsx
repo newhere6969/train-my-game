@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,11 +34,11 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <a href="#sports">
+            <Link to="/auth">
               <Button variant="hero" size="sm">
                 Get Started
               </Button>
-            </a>
+            </Link>
           </div>
 
           <button
@@ -60,11 +61,11 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <a href="#sports" className="block" onClick={() => setIsMenuOpen(false)}>
+            <Link to="/auth" className="block" onClick={() => setIsMenuOpen(false)}>
               <Button variant="hero" size="sm" className="w-full">
                 Get Started
               </Button>
-            </a>
+            </Link>
           </div>
         )}
       </div>
